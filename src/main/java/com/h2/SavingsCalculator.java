@@ -44,11 +44,13 @@ public class SavingsCalculator {
         String[] debitsAsString = args[1].split(",");
 
         float[] credits = new float[creditsAsString.length];
+        float[] debits = new float[debitsAsString.length];
+
         for (int i = 0; i < creditsAsString.length; i++) {
             credits[i] = Float.parseFloat(creditsAsString[i]);
         }
 
-        float[] debits = new float[debitsAsString.length];
+
         for (int i = 0; i < debitsAsString.length; i++) {
             debits[i] = Float.parseFloat(debitsAsString[i]);
         }
@@ -56,6 +58,6 @@ public class SavingsCalculator {
         SavingsCalculator calculator = new SavingsCalculator(credits, debits);
         float netSavings = calculator.calculate();
         int remainingDays = remainingDaysInMonth(LocalDate.now());
-        System.out.println("Net Savings = " + netSavings + ", Remaining days in month = " + remainingDays);
+        System.out.println("Net Savings = " + netSavings + ", remaining days in month = " + remainingDays);
     }
 }
