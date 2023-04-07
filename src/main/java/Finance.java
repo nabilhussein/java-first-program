@@ -4,6 +4,9 @@ import com.h2.BestLoanRates;
 import com.h2.SavingsCalculator;
 import com.h2.MortgageCalculator;
 
+import java.util.Arrays;
+import java.util.Map;
+
 public class Finance {
     public final static String BEST_LOAN_RATES = "bestLoanRates";
     public final static String SAVINGS_CALCULATOR = "savingsCalculator";
@@ -45,7 +48,19 @@ public class Finance {
         }
 
     }
-    public static void main(String[] args){
-        
+    public static void main(String[] args) {
+        String command = args[0];
+        if(!commandsToUsage.containsKey(command)) {
+            System.out.println(command + ": command not found");
+            return;
+        }
+
+        boolean isValidCommand = validateCommandArguments(args);
+        if(!isValidCommand) {
+            System.out.println(commandsToUsage.get(args[0]));
+            return;
+        }
+
+        executeCommand(command, Arrays.copyOfRange(args, 1, args.length));
     }
 }
